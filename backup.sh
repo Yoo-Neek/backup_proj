@@ -41,7 +41,7 @@ origAbsPath=`realpath $targetDirectory`
 
 # [TASK 6]
 cd # <-
-destDirAbsPath=`realpath $destinationDirectory`
+$destDirAbsPath=`realpath $destinationDirectory`
 
 # [TASK 7]
 cd $origAbsPath
@@ -51,17 +51,20 @@ yesterdayTS=(($currentTS-86400))
 
 declare -a toBackup
 
-for file in  # [TASK 9]
+for file in * # [TASK 9]
 do
   # [TASK 10]
-  if (())
+  if [`date -r $file +%s` -gt $yesterdayTS]
   then
     # [TASK 11]
+    toBackup+=($file)
   fi
 done
 
 # [TASK 12]
+tar -czvf $backupFileName ${toBackup[@]}
 
 # [TASK 13]
+mv $backupFileName $destDirAbsPath
 
 # Congratulations! You completed the final project for this course!
