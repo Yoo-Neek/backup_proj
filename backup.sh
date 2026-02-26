@@ -40,21 +40,21 @@ backupFileName="backup-$currentTS.tar.gz"
 origAbsPath=`realpath $targetDirectory`
 
 # [TASK 6]
-cd # <-
-$destDirAbsPath=`realpath $destinationDirectory`
+destDirAbsPath=`realpath $destinationDirectory`
+echo destdirabs $destDirAbsPath
 
 # [TASK 7]
 cd $origAbsPath
 
 # [TASK 8]
-yesterdayTS=(($currentTS-86400))
+yesterdayTS=$(($currentTS-86400))
 
 declare -a toBackup
 
 for file in * # [TASK 9]
 do
   # [TASK 10]
-  if [`date -r $file +%s` -gt $yesterdayTS]
+  if [ `date -r $file +%s` -gt $yesterdayTS ]
   then
     # [TASK 11]
     toBackup+=($file)
@@ -62,6 +62,7 @@ do
 done
 
 # [TASK 12]
+echo backing up to $backupFileName
 tar -czvf $backupFileName ${toBackup[@]}
 
 # [TASK 13]
