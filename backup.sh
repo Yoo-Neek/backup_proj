@@ -41,7 +41,6 @@ origAbsPath=`realpath $targetDirectory`
 
 # [TASK 6]
 destDirAbsPath=`realpath $destinationDirectory`
-echo destdirabs $destDirAbsPath
 
 # [TASK 7]
 cd $origAbsPath
@@ -62,7 +61,6 @@ do
 done
 
 # [TASK 12]
-echo backing up to $backupFileName
 tar -czvf $backupFileName ${toBackup[@]}
 
 # [TASK 13]
